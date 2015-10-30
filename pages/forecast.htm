@@ -1,0 +1,25 @@
+<!-- Step 9: Interpolating city to display on page -->
+<p>
+	<a href="#/">Back to Search</a>
+</p>
+
+<h3>Forecast for {{ city }}</h3>
+<hr />
+<a href="#/forecast/2" ng-class="{ 'bg-primary': days === '2' }">2-day forecast</a> | <a href="#/forecast/5" ng-class="{ 'bg-primary': days === '5' }">5-day forecast</a> | <a href="#/forecast/7" ng-class="{ 'bg-primary': days === '7' }">7-day forecast</a>
+<hr />
+
+<div ng-repeat='w in weatherResult.list'>
+	<div class='row'>
+		<div class='col-md-12'>
+			<div class='panel panel-default'>
+				<div class='panel-heading'>
+					<!-- Adjusting date from miliseconds to more readable data. (found on https://docs.angularjs.org/api/ng/filter/date) -->
+					<h3 class='panel-title'>{{  convertToDate(w.dt) | date: 'EEEE, MMM d, y'}}</h3>
+				</div>
+				<div class='panel-body'>
+					Daytime temperature: {{ convertToFahrenheit(w.temp.day) }}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
